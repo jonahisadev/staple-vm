@@ -1,4 +1,6 @@
+push #10
+push #20
 push #30
-push #12
+add
 add
 hlt

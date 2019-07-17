@@ -22,7 +22,6 @@ struct _Token {
 };
 typedef struct _Token Token;
 
-// TODO: Don't heap allocate these
 void token_create(Token* tok, int type, int data, int line);
 void token_destroy(Token* tok);
 
