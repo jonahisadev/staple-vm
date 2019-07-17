@@ -23,18 +23,18 @@ struct _Token {
 typedef struct _Token Token;
 
 // TODO: Don't heap allocate these
-Token* token_create(int type, int data, int line);
+void token_create(Token* tok, int type, int data, int line);
 void token_destroy(Token* tok);
 
 struct _TokenList {
-	Token** data;
+	Token* data;
 	int ptr;
 	int size;
 };
 typedef struct _TokenList TokenList;
 
 void token_list_create(TokenList* list, int size);
-void token_list_add(TokenList* list, Token* tok);
+void token_list_add(TokenList* list, Token tok);
 Token* token_list_get(TokenList* list, int index);
 void token_list_destroy(TokenList* list);
 
