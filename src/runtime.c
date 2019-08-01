@@ -24,9 +24,25 @@ void runtime_start(Runtime* runtime) {
 				break;
 			}
 
+			// SUB
+			case SUB_STACK: {
+				uint32_t a = pop32(runtime);
+				uint32_t b = pop32(runtime);
+				push32(runtime, a - b);
+				break;
+			}
+
+			// MUL
+			case MUL_STACK: {
+				uint32_t a = pop32(runtime);
+				uint32_t b = pop32(runtime);
+				push32(runtime, a * b);
+				break;
+			}
+
 			// HLT
 			case HLT_OP: {
-				runtime->exit = (uint8_t) pop32(runtime);
+				runtime->exit = (uint8_t) pop8(runtime);
 				runtime->status = RUNTIME_SUCCESS;
 				runtime->running = false;
 				break;

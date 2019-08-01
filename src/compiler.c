@@ -30,6 +30,18 @@ void compiler_start(Compiler* c) {
 					break;
 				}
 
+				// SUB
+				case SUB: {
+					byte_buffer_write8(c->bytecode, SUB_STACK);
+					break;
+				}
+
+				// MUL
+				case MUL: {
+					byte_buffer_write8(c->bytecode, MUL_STACK);
+					break;
+				}
+
 				// HLT
 				case HLT: {
 					byte_buffer_write8(c->bytecode, HLT_OP);

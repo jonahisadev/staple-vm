@@ -5,6 +5,8 @@ enum _Opcode {
 	NOP = 0x00,
 	PUSH_CONST = 0x01,
 	ADD_STACK = 0x02,
+	SUB_STACK = 0x03,
+	MUL_STACK = 0x04,
 	HLT_OP = 0xFF
 };
 

@@ -7,15 +7,18 @@ ParserStatus parser_start(TokenList* list, const char* source) {
 	int line = 1;
 
 	while (1) {
-		// memset(lex, 0, 256);
-
-		while (source[i] != ' ' && source[i] != '\n' && source[i] != '\0') {
+		// Loop until we find some delimiter
+		while (source[i] != ' ' && source[i] != '\n' && source[i] != '\0' && source[i] != '\t') {
 			lex[lexi++] = source[i++];
 		}
 		lex[lexi] = '\0';
 
-		// TODO: care about empty lines
-		// TODO: care about tabs
+		// Care about empty lines and tabs
+		if (lexi == 0 && (source[i] == '\n' || source[i] == '\t')) {
+			i++;
+			if (source[i] == '\n') line++;
+			continue;
+		}
 
 		Token token;
 
@@ -35,7 +38,7 @@ ParserStatus parser_start(TokenList* list, const char* source) {
 				token_create(&token, INST, inst, line);
 				token_list_add(list, token);
 			} else {
-				printf("Syntax error: no such instruction '%s'\n", lex);
+				printf("%d: Syntax error: no such instruction '%s'\n", line, lex);
 				return PARSER_SYNTAX_ERROR;
 			}
 		}
@@ -67,6 +70,10 @@ TokenInst parser_get_inst(const char* buf) {
 		return PUSH;
 	if (strcmp(buf, "add") == 0)
 		return ADD;
+	if (strcmp(buf, "sub") == 0)
+		return SUB;
+	if (strcmp(buf, "mul") == 0)
+		return MUL;
 	if (strcmp(buf, "hlt") == 0)
 		return HLT;
 	return (TokenInst)-1;

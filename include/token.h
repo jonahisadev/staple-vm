@@ -11,6 +11,8 @@ enum _TokenType {
 enum _TokenInst {
 	PUSH,
 	ADD,
+	SUB,
+	MUL,
 	HLT
 };
 typedef enum _TokenInst TokenInst;

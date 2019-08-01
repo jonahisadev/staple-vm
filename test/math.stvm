@@ -1,0 +1,4 @@
+push #8
+push #12
+mul
+hlt
